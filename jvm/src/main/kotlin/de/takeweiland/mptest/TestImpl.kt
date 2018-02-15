@@ -1,7 +1,7 @@
 package de.takeweiland.mptest
 
 class TestImpl : Test {
-    override fun <E : Any> doSomething(type: TypeWithParameter<E>) {
+    override fun doSomething(type: ExpectedType) {
         println(type)
     }
 }
