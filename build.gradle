@@ -1,0 +1,38 @@
+buildscript {
+    ext.kotlin_version = '1.2.21'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+subprojects {
+    group 'de.takeweiland.apibase'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+configure(project(':common')) {
+    apply plugin: 'kotlin-platform-common'
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+    }
+}
+
+configure(project(':jvm')) {
+    apply plugin: 'kotlin-platform-jvm'
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+        expectedBy project(':common')
+    }
+}
